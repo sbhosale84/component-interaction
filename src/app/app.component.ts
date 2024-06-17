@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <app-testing
+      [childMessage]="message"
+      (MsgToParent)="receiveMessage($event)"
+    ></app-testing>
+  `,
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'component-interaction';
+  message = 'hello this is message from parent to child';
+
+  receiveMessage(message: string) {
+    this.message = message;
+  }
 }
